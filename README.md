@@ -1,0 +1,1 @@
+# Rose Studio templates

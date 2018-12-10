@@ -1,1 +1,1 @@
-Test folder for Rose Studio Template
+# Test folder for Rose Studio Template

@@ -1,5 +1,10 @@
 {
     "example": "value",
     "isTrue":false,
-    "aNumber": 27
+    "aNumber": 27,
+    "anObject": {
+        "name": "Joe Smith",
+        "age": 22
+    }
+    // this is a comment
 }

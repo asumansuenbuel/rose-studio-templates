@@ -1,4 +1,5 @@
 {
     "example": "value",
-    "isTrue":false
+    "isTrue":false,
+    "aNumber": 27
 }

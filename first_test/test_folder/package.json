@@ -4,7 +4,7 @@
     "aNumber": 27,
     "anObject": {
         "name": "Joe Smith",
-        "age": 22
+        "age": 23
     }
     // this is a comment line 1
 }

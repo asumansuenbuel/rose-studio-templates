@@ -7,7 +7,9 @@ The robot's uuid is "$${robot.UUID}""
 
 
 //! if (useDatabase) {
-This scenario uses a Database.
+This scenario uses a database.
+//! } else {
+This scenario uses no database.
 //! }
 
 There is $${demoSetup?"at least one":"no"} demo setup. There could also be more than one.

@@ -1,0 +1,8 @@
+module.exports = { 
+	vendor_cloud_hostname: 'sap.fetchcore-cloud.com',
+	vendor_cloud_port: 443,
+	vendor_cloud_enableSSL: true,
+	vendor_cloud_proxy: '',
+	vendor_cloud_username: 'sap@demo.com',
+	vendor_cloud_password: 'robotslikesap',
+};

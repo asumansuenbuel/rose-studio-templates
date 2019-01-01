@@ -1,0 +1,8 @@
+module.exports = { 
+	vendor_cloud_hostname: 'http://192.168.0.100/',
+	vendor_cloud_port: 8080,
+	vendor_cloud_proxy: '',
+	vendor_cloud_username: 'Admin',
+	vendor_cloud_password: 'admin',
+	vendor_cloud_endpoint: 'api/v2.0.0/'
+};

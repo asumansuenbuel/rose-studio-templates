@@ -1,0 +1,63 @@
+{
+  "name": "rose-js",
+  "version": "1.0.0",
+  "description": "SAP Robotics Services in JavaScript",
+  "main": "prototype/src/index.js",
+  "scripts": {},
+  "keywords": [
+    "rose",
+    "robotics",
+    "robotics-services",
+    "javascript",
+    "sdk"
+  ],
+  "author": "Xuecong Shao, Suneet Agera",
+  "dependencies": {
+    "axios": "^0.15.3",
+    "babel-cli": "^6.6.5",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-es2015": "^6.22.0",
+    "body-parser": "^1.18.2",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "form-data": "^2.1.2",
+    "generic-pool": "~2.0.4",
+    "hdb": "^0.12.2",
+    "http": "0.0.0",
+    "lodash": "^4.17.4",
+    "request": "^2.85.0",
+    "request-promise": "^4.2.2",
+    "routes": "^2.1.0",
+    "soap": "^0.24.0",
+    "websocket": "^1.0.26"
+  },
+  "devDependencies": {
+    "babelify": "^7.3.0",
+    "babel-eslint": "^7.1.1",
+    "babel-plugin-transform-class-properties": "^6.23.0",
+    "browserify": "^14.1.0",
+    "eslint": "^3.15.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-brackets": "0.0.1",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.9.0",
+    "eslint-teamcity": "^1.3.1",
+    "gulp": "^3.9.1",
+    "gulp-eslint": "^3.0.1",
+    "gulp-sourcemaps": "^2.4.1",
+    "gulp-uglify": "^2.0.1",
+    "gulp-util": "^3.0.8",
+    "istanbul": "^0.4.5",
+    "jasmine": "^2.5.3",
+    "jasmine-reporters": "^2.2.0",
+    "jsdoc": "^3.4.3",
+    "randomstring": "^1.1.5",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.9.0"
+  },
+  "engines": {
+    "node": "^6.10.3"
+  }
+}

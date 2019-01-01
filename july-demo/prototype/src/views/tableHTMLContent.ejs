@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <title>Robot Inventory</title>
+        <link rel="stylesheet" type="text/css" href="/css/tableDisplayStyle.css">
+        <link rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+            crossorigin="anonymous">
+    </head>
+    <body>
+        <h1 class="ribbon">
+            <strong class="ribbon-content">Robot Inventory</strong>
+        </h1>
+        <fieldset>
+            <div class="container">
+                <div style="overflow-x:auto; margin-bottom: 30px" >
+                    <table>
+
+                        <% if(typeof data != 'undefined'){ %>
+                            <tr>
+                                <th>ROBOT_ID</th>
+                                <th>ROBOT_NAME</th>
+                                <th>ROBOT_VENDOR</th>
+                                <th>ROBOT_VENDOR_MODEL</th>
+                                <th>ROBOT_TYPE</th>
+                                <th>ROBOT_OPERATION_STATUS</th>
+                                <th>ALLOCATION_FLAG</th>
+                            </tr>
+
+                            <% for (var i= 0; i <data.length; i++) { %>
+                                <tr>
+                                    <td>
+                                        <%= data[i].ROBOT_ID %>
+                                    </td>
+                                    <td>
+                                        <%= data[i].ROBOT_NAME %>
+                                    </td>
+                                    <td>
+                                    <%= data[i].ROBOT_VENDOR %>
+                                    </td>
+                                    <td>
+                                    <%= data[i].ROBOT_VENDOR_MODEL %>
+                                    </td>
+                                    <td>
+                                    <%= data[i].ROBOT_TYPE %>
+                                    </td>
+                                    <td>
+                                    <%= data[i].ROBOT_OPERATION_STATUS %>
+                                    </td>
+                                    <td>
+                                    <%= data[i].ALLOCATION_FLAG %>
+                                    </td>
+                                    </tr>
+                            <% } %>
+                         <% } %>
+                        </table>
+                    </div>
+                </div>
+                    <div >
+                        
+                            <form action="/" method="post">
+
+                               
+                                <div class="row justify-content-md-center">
+                                    <div class="col-md-auto">
+                                        <input name="id" type="text" class="input"
+                                            placeholder="ROBOT_ID" required>
+                                    </div>
+                                    <div class="col-md-auto">
+                                        <input name="name" type="text" class="input"
+                                            placeholder="ROBOT_NAME" required>
+                                    </div>
+                                    <div class="col-md-auto">
+                                        <input name="vendor" type="text" class="input"
+                                            placeholder="ROBOT_VENDOR" required>
+                                    </div>
+                                    <div class="col-md-auto">
+                                        <input name="model" type="text" class="input"
+                                            placeholder="ROBOT_VENDOR_MODEL" required>
+                                    </div>
+                                    <div class="col-md-auto">
+                                        <input name="type" type="text" class="input"
+                                            placeholder="ROBOT_TYPE" required>
+                                    </div>
+                                    <div class="col-md-auto">
+                                        <input name="status" type="text" class="input"
+                                            placeholder="ROBOT_STATUS" required>
+                                    </div>
+                                    <div class="col-md-auto">
+                                        <input name="flag" type="text" class="input"
+                                            placeholder="ALLOCATION_FLAG" required>
+                                    </div>
+            
+                                </div>
+                                <div class="container"><input type="submit" class="button" value="Add Robot"></div>
+                             
+                            </form>
+                            
+                        </div>
+                        
+                </fieldset>
+            
+        </body>
+
+</html> 
+

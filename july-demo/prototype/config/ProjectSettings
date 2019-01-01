@@ -1,0 +1,4 @@
+module.exports = { 
+	dbUser: 'ROBOTICS_RUNTIME_USR',
+	dbPassword: 'Sap123456'
+};

@@ -1,0 +1,14 @@
+
+
+module.exports = { 
+	process1 : {
+    "id": "1",
+    "name":"Assembly Demo IoT Startup Accelerator",
+    "steps" : [
+        {
+            "name":"assembly",
+            "id":"i_1"
+        }
+    ]
+ }
+};

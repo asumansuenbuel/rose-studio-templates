@@ -1,0 +1,16 @@
+# ---
+# applications:
+# - name: robserv-wip
+#   command: node ./examples/roboticsEWMServices.js
+#   memory: 128M
+#   instances: 1
+#   buildpack: nodejs_buildpack
+
+
+---
+applications:
+- name: rose
+  command: node ./prototype/src/SAPRoboticServices.js
+  memory: 128M
+  instances: 1
+  buildpack: nodejs_buildpack

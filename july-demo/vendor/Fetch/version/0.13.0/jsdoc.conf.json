@@ -1,0 +1,20 @@
+{
+  "tags": {
+    "allowUnknownTags": true
+  },
+  "source": {
+    "include": [ "src" ],
+    "includePattern": ".+\\.js(doc|x)?$"
+  },
+  "opts": {
+    "encoding": "utf8",
+    "destination": "docs",
+    "recurse": true,
+    "private": true
+  },
+  "templates": {
+    "systemName": "Fetchcore JavaScript SDK",
+    "footer": "<span class=\"jsdoc-message\">Created by Calvin Feng</span>",
+    "copyright": "2017"
+  }
+}

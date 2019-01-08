@@ -362,7 +362,20 @@ function getAValidSO(site, workCenter, callback) {
 
 
 }
-/** Part of the demo script (splitted for reading purposes)
+
+// the goods delivery robot is $${goodsDeliveryRobot.NAME}
+// the parts delivery robot is $${partsDeliveryRobot.NAME}
+
+//! let gRobot = goodsDeliveryRobot.jsconfig.wrapperServiceFunction
+//! let gRobotName = getRobotName(goodsDeliveryRobot)
+
+//! let pRobot = partsDeliveryRobot.jsconfig.wrapperServiceFunction
+//! let pRobotName = getRobotName(partsDeliveryRobot)
+
+
+
+
+/** Part of the demo script (splitted for readability)
  * 
  * @param {String} site 
  * @param {String} shopOrder 
@@ -371,7 +384,7 @@ function getAValidSO(site, workCenter, callback) {
 function demoGo(site, shopOrder, callback) {
     getInitialSFC(site, shopOrder, function (error, resultSFC) {
         console.log(resultSFC);
-        mirWrapperServices.moveRobotToBin("GI-ZONE", null, "MIR");
+        $${pRobot}.moveRobotToBin("$${startPositionForPartsDeliveryRobot}", null, "$${pRobotName}");
         let getSFCStatus = setInterval(
             getOperationStatusBySFC.bind(null, "1710", resultSFC, function (error, resultState) {
                 if (error) {
@@ -390,8 +403,6 @@ function demoGo(site, shopOrder, callback) {
     });
 }
 
-//! let gRobot = goodsDeliveryRobot.jsconfig.wrapperServiceFunction
-//! let gRobotName = getRobotName(goodsDeliveryRobot)
 
 /**
  * Start the demo when every prerequesite is set
@@ -406,20 +417,20 @@ function startDemo(site, workStation, callback) {
             return;
         }
         demoGo(site, "ShopOrderBO:" + site + "," + SO, function (error, resultSFC) {
-            $${gRobot}.moveRobotToBin("$${startPositionForGoodsDeliveryRobot}", null, "$${gRobotName}");
+            $${pRobot}.moveRobotToBin("$${endPositionForPartsDeliveryRobot}", "$${pRobotName}");
             urWrapperServices.performRobotTask(function (error, result) {
                 if (error) {
                     return console.error(error);
                 }
                 console.log("success");
-                fetchWrapperServices.moveRobotToBin("Demo", "freight69");
+                $${gRobot}.moveRobotToBin("$${startPositionForGoodsDeliveryRobot}", "$${gRobotName}");
                 let getSFCStatus2 = setInterval(
                     getOperationStatusBySFC.bind(null, "1710", resultSFC, function (error, resultState) {
                         if (error) {
                             return console.error(err);
                         }
                         if (resultState === "405") {
-                            fetchWrapperServices.moveRobotToBin("Demo2", "freight69");
+                            $${gRobot}.moveRobotToBin("$${endPositionForGoodsDeliveryRobot}", "$${gRobotName}");
                             console.log("Finished");
                             clearInterval(getSFCStatus2);
                             callback(null, "Finished");

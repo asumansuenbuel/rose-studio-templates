@@ -390,6 +390,9 @@ function demoGo(site, shopOrder, callback) {
     });
 }
 
+//! let gRobot = goodsDeliveryRobot.jsconfig.wrapperServiceFunction
+//! let gRobotName = getRobotName(goodsDeliveryRobot)
+
 /**
  * Start the demo when every prerequesite is set
  * @param {String} site 
@@ -403,7 +406,7 @@ function startDemo(site, workStation, callback) {
             return;
         }
         demoGo(site, "ShopOrderBO:" + site + "," + SO, function (error, resultSFC) {
-            mirWrapperServices.moveRobotToBin("Demo Start Position", null, "MIR");
+            $${gRobot}.moveRobotToBin("$${startPositionForGoodsDeliveryRobot}", null, "$${gRobotName}");
             urWrapperServices.performRobotTask(function (error, result) {
                 if (error) {
                     return console.error(error);

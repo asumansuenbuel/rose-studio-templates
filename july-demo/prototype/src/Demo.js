@@ -363,8 +363,8 @@ function getAValidSO(site, workCenter, callback) {
 
 }
 
-// the goods delivery robot is $${goodsDeliveryRobot.NAME}
-// the parts delivery robot is $${partsDeliveryRobot.NAME}
+// The goods delivery robot is $${goodsDeliveryRobot.NAME}
+// The parts delivery robot is $${partsDeliveryRobot.NAME}
 
 //! let gRobot = goodsDeliveryRobot.jsconfig.wrapperServiceFunction
 //! let gRobotName = getRobotName(goodsDeliveryRobot)

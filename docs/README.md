@@ -35,8 +35,8 @@ The Config JSON object is specified in the "Config" tab. Let's assume, we have t
 
 ```javascript
 {
-    checkDivisionByZero: true,
-    errorMessage: "error: division by 0"
+    "checkDivisionByZero": true,
+    "errorMessage": "error: division by 0"
 }
 ```
 
@@ -55,3 +55,15 @@ function doSomething(a,b) {
 }
 </pre>
 
+The highlighted parts are meta-programming parts; those are evaluated when you create an instance of the scenario class. With the above settings in the Config, the generated code would look like this:
+
+```javascript
+function doSomething(a,b) {
+    //...
+    if (b === 0) {
+        throw "error: division by 0"
+    }
+    let res = a / b
+    // ...
+}
+```

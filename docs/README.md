@@ -45,11 +45,11 @@ You can now use those config settings in any part of your code, for instance in 
 <pre>
 function doSomething(a,b) {
     // ...
-    &#47;&#47;! if (checkDivisionByZero) {
+    <hl>&#47;&#47;! if (checkDivisionByZero) {</hl>
     if (b === 0) {
-        throw "$${errorMessage}"
+        throw "<hl>$${errorMessage}</hl>"
     }
-    &#47;&#47;! }
+    <hl>&#47;&#47;! }</hl>
     let res = a / b
     // ...
 }

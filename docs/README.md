@@ -1,4 +1,9 @@
-# Using Rose-Studio's Meta-Programming Features
+<style>
+hl {
+    background-color: yellow;
+}
+</style>
+## Using Rose-Studio's Meta-Programming Features
 
 _Asuman Suenbuel (c) 2019_
 
@@ -11,7 +16,7 @@ Situation where this technique has advantages include the following:
 - In cases, where you need to be careful which code you share with which customer/partner (IP issues).
 
 
-## The Meta-Programming features
+# The Meta-Programming features
 
 You can use the following features in your code files to control the code generation in instances of your scenario classes:
 
@@ -23,3 +28,30 @@ Rose-Studio uses JavaScript for evaluating the meta-programming constructs. The 
 - JSON objects derived from the instantiations of the placeholders with concrete objects from the Rose-Studio robots and systems registry.
 
 Let's start with the first item; we'll cover the second one after that.
+
+# 'Hello World' Example
+
+The Config JSON object is specified in the "Config" tab. Let's assume, we have the following Config object:
+
+```javascript
+{
+    checkDivisionByZero: true,
+    errorMessage: "error: division by 0"
+}
+```
+
+You can now use those config settings in any part of your code, for instance in a snippet like this:
+
+<pre>
+function doSomething(a,b) {
+    // ...
+    &#47;&#47;! if (checkDivisionByZero) {
+    if (b === 0) {
+        throw "$${errorMessage}"
+    }
+    &#47;&#47;! }
+    let res = a / b
+    // ...
+}
+</pre>
+

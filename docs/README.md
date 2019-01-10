@@ -67,3 +67,15 @@ function doSomething(a,b) {
     // ...
 }
 ```
+
+You try this out yourself by creating an instance of this scenario class or using an existing instance:
+- to create an instance, click on the 'Create Instance' button in the top toolbar of the connection scenario class
+- to navigate to an existing instance open the 'Instances' panel on the right side and click on one of the instances.
+
+You can tell whether you currently in a scenario *class* page or in an scenario *instance* page:
+- the scenario *class* page has a blueish top toolbar, while
+- the *instance* page has a greenish top toolbar.
+
+<div style="font-style: italic; padding: 10px">
+//! // If you see this, you are in a scenario *class* page. Why? Because this line starts with &#47;&#47;! and will be processed by as Javascript line (which in this case is a comment line) by the Rose-Studio code generator.
+</div>

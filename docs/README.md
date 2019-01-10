@@ -2,6 +2,9 @@
 hl {
     background-color: yellow;
 }
+invisible {
+    display: none;
+}
 </style>
 ## Using Rose-Studio's Meta-Programming Features
 
@@ -11,9 +14,10 @@ This 'connection scenario class' is created for documentation purposes to illust
 
 The meta-programming constructs in Rose-Studio enable you to customize your body of code for scenarios that represent variations from each other. Meta-programming works purely at design-time by generating different variations from a common code base.
 Situation where this technique has advantages include the following:
-- The differences between the variations are spread over many different source files at multiple location; code refactoring are either infeasible and/or would require major changes to the code.
-- In cases where runtime efficiency is key, meta-programming can minimize runtime checks by compiling information already know at design-time into the running code.
-- In cases, where you need to be careful which code you share with which customer/partner (IP issues).
+- the differences between the variations are spread over many different source files at multiple location; code refactoring are either infeasible and/or would require major changes to the code;
+- in cases where runtime efficiency is key, meta-programming can minimize runtime checks by compiling information already know at design-time into the running code;
+- in cases, where you need to be careful which code you share with which customer/partner (IP issues);
+- in case you want to instrument your code with instructions for debugging and/or profiling, but want to ship out a "clean" version.
 
 
 # The Meta-Programming features
@@ -82,6 +86,12 @@ You can tell whether you currently in a scenario *class* page or in an scenario 
 
 The code files contain a "HelloWorld.js" with the above content. If you are in the instance page, you can play with the values in the Config tab to change the generated code for HelloWorld.js. See below for how this could look like:
 
-<embed type="video/webm" src="https://asu-file-hosting.firebaseapp.com/rose-hello-world.mp4" width="680px" height="500px">
+<invisible>
+//! if (includeVideosInReadme) {
+</invisible>
+<embed type="video/webm" src="https://asu-file-hosting.firebaseapp.com/rose-hello-world.mp4" width="800px" height="500px">
+<invisible>
+//! }
+</invisible>
 
-Note: we are using JavaScript for out code example here, but the meta-programming is applicable to all kinds of text files (including the file containing this document).
+Note: we are using JavaScript for our code examples here, but the meta-programming is applicable to all kinds of text files (including the file containing this document; you can see for yourself by playing with the "includeVideosInReadme" flag in the Config object when viewing this in an instance page).

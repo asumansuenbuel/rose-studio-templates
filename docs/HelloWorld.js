@@ -6,7 +6,7 @@
     // ...
     //! if (checkDivisionByZero) {
     if (b === 0) {
-        throw "<hl>$${errorMessage}</hl>"
+        throw "$${errorMessage}"
     }
     //! }
     let res = a / b

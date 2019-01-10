@@ -80,4 +80,8 @@ You can tell whether you currently in a scenario *class* page or in an scenario 
 //! // If you see this, you are in a scenario <b>class</b> page. Why? Because this line starts with &#47;&#47;! and will be processed as Javascript line (which in this case is a comment line) by the Rose-Studio code generator.
 </div>
 
-The code files contain a "HelloWorld.js" with the above content. If you are in the instance page, you can play with the values in the Config tab to change the generated code for HelloWorld.js.
+The code files contain a "HelloWorld.js" with the above content. If you are in the instance page, you can play with the values in the Config tab to change the generated code for HelloWorld.js. See below for how this could look like:
+
+<embed type="video/webm" src="https://asu-file-hosting.firebaseapp.com/rose-hello-world.mp4" width="680px" height="500px">
+
+Note: we are using JavaScript for out code example here, but the meta-programming is applicable to all kinds of text files (including the file containing this document).

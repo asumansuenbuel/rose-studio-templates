@@ -19,7 +19,7 @@ Using Rose-Studio's Meta-Programming Features
 
 _Asuman Suenbuel (c) 2019_
 
-This 'scenario class' is created for documentation purposes to illustrate and explain the use of the meta-programming features available when working with Rose-Studio. This is a 'live' document that is part of the Github code that is associated with this class; you can find it's content in the toplevel README.md file. If you are reading this as part of the "Settings" tab, then you are seeing one Rose-Studio's feature in action: if there is a README.md file on the toplevel of the file hierarchy, it will be display here formatted using a markdown processor.
+This 'scenario class' is created for documentation purposes to illustrate and explain the use of the meta-programming features available when working with Rose-Studio. This is a 'live' document that is part of the Github code that is associated with this class; you can find it's content in the toplevel README.md file. If you are reading this as part of the "Settings" tab, then you are seeing one Rose-Studio's feature in action: if there is a README.md file on the toplevel of the file hierarchy, it will be display here formatted using the markdown processor [showdownjs](http://showdownjs.com).
 
 The meta-programming constructs in Rose-Studio enable you to customize your body of code for scenarios that represent variations from each other. Meta-programming works purely at design-time by generating different variations from a common code base.
 Situation where this technique has advantages include the following:
@@ -119,7 +119,7 @@ From the Rose-Studio start page you can navigate to the "Robots and Robotics Sys
 
 Placeholders are defined in a scenario class like this one. While in "Edit" mode (see toolbar), you can add either backend system or robotic system placeholders. During the definition, you need to assign a unique identifier to each of the placeholders; those are the identifiers that are used to refer to the fields with the meta-programming constructs. In this class, these are 'sys1' and 'robot1'. 
 
-//! // You can see the placeholder at the top of this page.
+//! // You can see the placeholders at the top of this page.
 
 While defining the placeholders you can add constraints to them, thus limiting the set of object they can be instantiated with. Here, we have added a constraint to the robot placeholder, so that only robot objects where the field "Robot Category" is set to "logistic" are valid instantiations of this placeholder.
 
@@ -128,5 +128,19 @@ While defining the placeholders you can add constraints to them, thus limiting t
 _Note: If you want to modify the dialog fields, you first have to switch to "Edit" mode._
 
 ### Instantiating Placeholders
+
+Placeholder instantiations are done while inside on a scenario *instance* page.
+
+//! // Please navigate to an instance page by either creating a new instance or clicking on an existing one on the right.
+
+There, placeholder can be in one of the two following states:
+- **not instantiated**: the placeholder box has a white background with a dashed border:
+
+<center><img src="https://asu-file-hosting.firebaseapp.com/placeholder-not-instantiated.png" width="20%"></center>
+
+- **instantiated**: the placeholder box has a blueish background, a thick black border, and contains the title and image of the object which it is instantiated with:
+
+<center><img src="https://asu-file-hosting.firebaseapp.com/placeholder-instantiated.png" width="20%"></center>
+
 
 

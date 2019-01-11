@@ -181,7 +181,11 @@ Once a placeholder is instantiated, its instantiated value can be used in the me
 
 Some Notes:
 - the 'robot1' Config entry (and all entries associated with placeholder instantiation) do not actually appear in the Config tab; we just spell it out here for illustration purposes
-- the 'jsconfig' field in the robot structure has been created as a 'JSON' field, so that it is interpreted as a substructure.
+- the 'jsconfig' field in the robot structure has been created as a 'JSON' field; it is interpreted as a substructure.
+
+//! if (!!robot1) {
+    Please instantiate the robot placeholder.
+//! }
 
 
 

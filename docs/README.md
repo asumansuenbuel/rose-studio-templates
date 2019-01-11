@@ -127,6 +127,6 @@ While defining the placeholders you can add constraints to them, thus limiting t
 
 _Note: If you want to modify the dialog fields, you first have to switch to "Edit" mode._
 
-### Instantiating placeholders
+### Instantiating Placeholders
 
 

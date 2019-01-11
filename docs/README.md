@@ -46,7 +46,7 @@ Let's start with the first item; we'll cover the second one after that.
 
 The Config JSON object is specified in the "Config" tab. Let's assume, we have the following Config object:
 
-```javascript
+```json
 {
     "checkDivisionByZero": true,
     "errorMessage": "error: division by 0"
@@ -111,6 +111,7 @@ Rose-Studio uses placeholders as a convenient way of providing stored configurat
 
 <center>
 <img class="shadow" src="https://asu-file-hosting.firebaseapp.com/fetch-robot-rose-studio.png" width="50%" style="border: 1px solid grey">
+<p>Figure 1</p>
 </center>
 
 From the Rose-Studio start page you can navigate to the "Robots and Robotics System" page and browse through the registered objects. As you might notice, some of the fields are purely informational, like 'Website' and 'Description', while other are more technical in nature, for instance the 'jsconfig' field. As mentioned earlier, the list of fields can be extended by the Rose-Studio users to include different kind of (technical and/or non-technical) information. In particular, we can add fields that contain code snippets, which could in turn be used by the meta-programming within a scenario class.
@@ -157,6 +158,31 @@ The instantiation (and undoing of the instantiation) is done visually in the UI 
 </invisible>
 
 - For undoing an instantiation you can simply drag the object box back into the right-side panel area.
+
+### Using the instantiated placeholders
+
+Once a placeholder is instantiated, its instantiated value can be used in the meta-programming constructs in the same way as illustrated above using the fields of the Config JSON object. The placeholder identifier is used to reference the fields of the instantiated object in the Config. As an example, let's assume we instantiated our placeholder 'robot1' with the 'Fetch Freight Base' entry shown in Figure 1, the Config JSON object is extended with a field names 'robot1', which contains as subfields all the fields defined in the 'Fetch Freight Base' entry. Internally, the Config object would then look something like this:
+
+<pre>
+{
+    "checkDivisionByZero": true,
+    "errorMessage": "error: division by 0"
+    "robot1": {
+        "NAME": "Fetch Freight Base",
+        "Robot Category": "logistic",
+        "shortName": "Fetch",
+        "jsconfig": {
+            "wrapperServiceFunction": "fetchWrapperService"
+        }
+        // <em>skipping some fields from robot entry</em>
+    }
+}
+</pre>
+
+Some Notes:
+- the 'robot1' Config entry (and all entries associated with placeholder instantiation) do not actually appear in the Config tab; we just spell it out here for illustration purposes
+- the 'jsconfig' field in the robot structure has been created as a 'JSON' field, so that it is interpreted as a substructure.
+
 
 
 

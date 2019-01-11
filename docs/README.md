@@ -14,11 +14,12 @@ invisible {
 
 </style>
 
-## Using Rose-Studio's Meta-Programming Features
+Using Rose-Studio's Meta-Programming Features
+=============================================
 
 _Asuman Suenbuel (c) 2019_
 
-This 'connection scenario class' is created for documentation purposes to illustrate and explain the use of the meta-programming features available when working with Rose-Studio. This is a 'live' document that is part of the Github code that is associated with this class; you can find it's content in the toplevel README.md file. If you are reading this as part as part of the "Settings" tab, then you are seeing one Rose-Studio's feature in action: if there is a README.md file on the toplevel of the file hierarchy, it will be display here formatted using a markdown processor.
+This 'scenario class' is created for documentation purposes to illustrate and explain the use of the meta-programming features available when working with Rose-Studio. This is a 'live' document that is part of the Github code that is associated with this class; you can find it's content in the toplevel README.md file. If you are reading this as part of the "Settings" tab, then you are seeing one Rose-Studio's feature in action: if there is a README.md file on the toplevel of the file hierarchy, it will be display here formatted using a markdown processor.
 
 The meta-programming constructs in Rose-Studio enable you to customize your body of code for scenarios that represent variations from each other. Meta-programming works purely at design-time by generating different variations from a common code base.
 Situation where this technique has advantages include the following:
@@ -28,7 +29,7 @@ Situation where this technique has advantages include the following:
 - in case you want to instrument your code with instructions for debugging and/or profiling, but want to ship out a "clean" version.
 
 
-# The Meta-Programming features
+## The Meta-Programming features
 
 You can use the following features in your code files to control the code generation in instances of your scenario classes:
 
@@ -41,7 +42,7 @@ Rose-Studio uses JavaScript for evaluating the meta-programming constructs. The 
 
 Let's start with the first item; we'll cover the second one after that.
 
-# 'Hello World' Example
+### 'Hello World' Example
 
 The Config JSON object is specified in the "Config" tab. Let's assume, we have the following Config object:
 
@@ -104,7 +105,7 @@ The code files contain a "HelloWorld.js" with the above content. If you are in t
 
 Note: we are using JavaScript for our code examples here, but the meta-programming is applicable to all kinds of text files (including the file containing this document; you can see for yourself by playing with the "includeVideosInReadme" flag in the Config object when viewing this in an instance page).
 
-# Using Placeholders
+## Using Placeholders
 
 Rose-Studio uses placeholders as a convenient way of providing stored configuration settings used during the design-time code generation. Currently, Rose-Studio supports two kinds of objects: backend systems (e.g. various SAP systems) and robotic systems (e.g. Fetch, Baxter, UR, Mir). The system maintains a registry for those objects; the user can create new entries as needed, as well as adding new fields of various types to the objects, if necessary. Below is an example entry for an robotic system:
 
@@ -112,6 +113,20 @@ Rose-Studio uses placeholders as a convenient way of providing stored configurat
 <img class="shadow" src="https://asu-file-hosting.firebaseapp.com/fetch-robot-rose-studio.png" width="50%" style="border: 1px solid grey">
 </center>
 
-From the Rose-Studio start page you can navigate to the "Robots and Robotics System" page and browse through the registered objects. As you might notice, some of the fields are purely informational, like 'Website' and 'Description', while other are more technical in nature, for instance the 'jsconfig' field. As mentioned earlier, the list of fields can be extended by the Rose-Studio users to include different kind of (technical and/or non-technical) information. In particular, we can add fields that contain any kind of code snippets, which could be used by the meta-programming within a scenario class.
+From the Rose-Studio start page you can navigate to the "Robots and Robotics System" page and browse through the registered objects. As you might notice, some of the fields are purely informational, like 'Website' and 'Description', while other are more technical in nature, for instance the 'jsconfig' field. As mentioned earlier, the list of fields can be extended by the Rose-Studio users to include different kind of (technical and/or non-technical) information. In particular, we can add fields that contain code snippets, which could in turn be used by the meta-programming within a scenario class.
+
+### Defining Placeholders
+
+Placeholders are defined in a scenario class like this one. While in "Edit" mode (see toolbar), you can add either backend system or robotic system placeholders. During the definition, you need to assign a unique identifier to each of the placeholders; those are the identifiers that are used to refer to the fields with the meta-programming constructs. In this class, these are 'sys1' and 'robot1'. 
+
+//! // You can see the placeholder at the top of this page.
+
+While defining the placeholders you can add constraints to them, thus limiting the set of object they can be instantiated with. Here, we have added a constraint to the robot placeholder, so that only robot objects where the field "Robot Category" is set to "logistic" are valid instantiations of this placeholder.
+
+<img class="shadow" src="https://asu-file-hosting.firebaseapp.com/placeholder-dialog.png" width="50%" style="border: 1px solid grey">
+
+_Note: If you want to modify the dialog fields, you first have to switch to "Edit" mode._
+
+### Instantiating placeholders
 
 

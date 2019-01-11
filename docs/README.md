@@ -142,5 +142,23 @@ There, placeholder can be in one of the two following states:
 
 <center><img src="https://asu-file-hosting.firebaseapp.com/placeholder-instantiated.png" width="20%"></center>
 
+The instantiation (and undoing of the instantiation) is done visually in the UI using drag-and-drop from (to) the right-side panel that contains shortcuts to the objects defined in the Rose-Studio systems and robots registries.
+
+- In order to instantiate a placeholder object that is in state 'not instantiated', you expand the corresponding panel on the right side, scroll to the object that you want to use and drag it onto the placeholder box and drop it as soon as the cursor becomes a green plus symbol:
+
+<invisible>
+//! if (includeVideosInReadme) {
+</invisible>
+<center>
+<embed type="video/webm" src="https://asu-file-hosting.firebaseapp.com/instantiating-a-placeholder.mp4" width="800px" height="500px">
+</center>
+<invisible>
+//! }
+</invisible>
+
+- For undoing an instantiation you can simply drag the object box back into the right-side panel area.
+
+
+
 
 

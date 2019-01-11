@@ -171,6 +171,8 @@ Once a placeholder is instantiated, its instantiated value can be used in the me
         "NAME": "Fetch Freight Base",
         "Robot Category": "logistic",
         "shortName": "Fetch",
+        "Website": "https://fetchrobotics.com",
+        "Manufacturer": "Fetch Robotics",
         "jsconfig": {
             "wrapperServiceFunction": "fetchWrapperService"
         }
@@ -183,14 +185,18 @@ Some Notes:
 - the 'robot1' Config entry (and all entries associated with placeholder instantiation) do not actually appear in the Config tab; we just spell it out here for illustration purposes
 - the 'jsconfig' field in the robot structure has been created as a 'JSON' field; it is interpreted as a substructure.
 
+The following line displays a different message depending on whether the 'robot1' placeholder is instantiated or not:
+
+//! // <div style="display:none">
+
 //! if (typeof robot1 === 'undefined') {
 **Please instantiate the robot placeholder.**
 //! } else {
-**The robot placeholder has been instantiated with "$${robot1.NAME}".**
+The robot placeholder has been instantiated with "$${robot1.NAME}" from manufacturer _$${robot1.Manufacturer}_. You can learn more about this robot at <a href="$${robot1.Website}" target="_blank">$${robot1.Website}</a>
+
 //! }
 
-
-
+//! // </div>
 
 
 

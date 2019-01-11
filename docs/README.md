@@ -5,7 +5,15 @@ hl {
 invisible {
     display: none;
 }
+
+.shadow {
+    -webkit-box-shadow: 10px 10px 4px -5px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 4px -5px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 4px -5px rgba(0,0,0,0.75);
+}
+
 </style>
+
 ## Using Rose-Studio's Meta-Programming Features
 
 _Asuman Suenbuel (c) 2019_
@@ -101,7 +109,7 @@ Note: we are using JavaScript for our code examples here, but the meta-programmi
 Rose-Studio uses placeholders as a convenient way of providing stored configuration settings used during the design-time code generation. Currently, Rose-Studio supports two kinds of objects: backend systems (e.g. various SAP systems) and robotic systems (e.g. Fetch, Baxter, UR, Mir). The system maintains a registry for those objects; the user can create new entries as needed, as well as adding new fields of various types to the objects, if necessary. Below is an example entry for an robotic system:
 
 <center>
-<img src="https://asu-file-hosting.firebaseapp.com/fetch-robot-rose-studio.png" width="50%" style="border: 1px solid grey">
+<img class="shadow" src="https://asu-file-hosting.firebaseapp.com/fetch-robot-rose-studio.png" width="50%" style="border: 1px solid grey">
 </center>
 
 From the Rose-Studio start page you can navigate to the "Robots and Robotics System" page and browse through the registered objects. As you might notice, some of the fields are purely informational, like 'Website' and 'Description', while other are more technical in nature, for instance the 'jsconfig' field. As mentioned earlier, the list of fields can be extended by the Rose-Studio users to include different kind of (technical and/or non-technical) information. In particular, we can add fields that contain any kind of code snippets, which could be used by the meta-programming within a scenario class.

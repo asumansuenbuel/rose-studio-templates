@@ -16,15 +16,17 @@ clean_processes
 
 sleep 2
 
-(sleep 10; xterm -e ) &
+//! if (runDemo) {
+(sleep 10; xterm -e sh $d/start_demo.sh) &
+//! }
 
 exec roslaunch my_fetch_gazebo playground.launch \
 //! switch(robot.shortName) {
 //! case 'FetchFreight':
-robot:=freight
+   robot:=freight
 //!   break
 //! case 'Fetch':
-robot:=fetch
+   robot:=fetch
 //!   break
 //! }
 

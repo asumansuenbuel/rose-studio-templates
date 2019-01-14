@@ -384,6 +384,7 @@
           </script>
         </material>
       </visual>
+//! if (false) {
       <collision name='Wall_40_Collision_2'>
         <geometry>
           <box>
@@ -392,6 +393,7 @@
         </geometry>
         <pose>-0.973913 0 2.25 0 -0 0</pose>
       </collision>
+//! }
     </link>
     <static>1</static>
   </model>

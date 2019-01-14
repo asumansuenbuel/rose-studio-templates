@@ -29,11 +29,13 @@
 # Author: Michael Ferguson
 
 //! var _isPickAndPlace = (robot.shortName === 'Fetch')
+//! var _isFreight = (robot["Robot Category"] === 'logistic')
 
 
 import copy
 import actionlib
 import rospy
+import time
 
 from math import sin, cos
 //! if (_isPickAndPlace) {
@@ -55,6 +57,10 @@ from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
 from geometry_msgs.msg import PoseStamped
 from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
 from moveit_msgs.msg import PlaceLocation, MoveItErrorCodes
+
+from gazebo_msgs.srv import GetModelState, SetModelState
+from gazebo_msgs.msg import ModelState
+
 
 # Move base using navigation stack
 class MoveBaseClient(object):
@@ -253,6 +259,44 @@ class GraspingClient(object):
                 return
 //! }
 
+//! if (_isFreight) {
+def place_demo_cube_onto(object_name, link_name = 'link', z = 0.9):
+    try:
+        getCoords = rospy.ServiceProxy('/gazebo/get_model_state', GetModelState)
+        objectCoords = getCoords(object_name, link_name)
+        place_demo_cube_onto_xy(objectCoords.pose.position.x, objectCoords.pose.position.y, z)
+    except rospy.ServiceException as e:
+        rospy.loginfo("placing demo cube on object failed:  {0}".format(e))
+        
+def place_demo_cube_onto_xy(x, y, z = 0.9):
+    try:
+        demoCubeName = 'demo_cube'
+        demoCubeRef = 'link'
+        print("placing demo_cube on (%f,%f)..." % (x, y))
+        # first get coordinates of demo_cube:
+        getCoords = rospy.ServiceProxy('/gazebo/get_model_state', GetModelState)
+        setProps = rospy.ServiceProxy('/gazebo/set_model_state', SetModelState)
+        demoCubeCoords = getCoords(demoCubeName, demoCubeRef)
+        # next, get the object's coordinates:
+        #objectCoords = getCoords(object_name, link_name)
+        # determine the difference between the object and the cube:
+        x_diff = x - demoCubeCoords.pose.position.x
+        y_diff = y - demoCubeCoords.pose.position.y
+        # finally, set the new coordinates of the cube:
+        msg = ModelState()
+        msg.model_name = demoCubeName
+        msg.reference_frame = demoCubeRef
+        msg.pose = demoCubeCoords.pose
+        msg.twist = demoCubeCoords.twist
+        msg.pose.position.x = x_diff
+        msg.pose.position.y = y_diff
+        msg.pose.position.z = z
+        setProps(msg)
+    except rospy.ServiceException as e:
+        rospy.loginfo("placing demo cube on object failed:  {0}".format(e))
+
+//! }
+
 if __name__ == "__main__":
     # Create a node
     rospy.init_node("mydemo")
@@ -278,8 +322,13 @@ if __name__ == "__main__":
     rospy.loginfo("Moving to table $${ctable.name}...")
     move_base.goto($${x0}, $${y0}, $${theta})
     move_base.goto($${x1}, $${y1}, $${theta})
-    //! if (ctable.hasCube && _isPickAndPlace) {
+    //! if (ctable.hasCube) {
+    //! if (_isFreight) {
+    place_demo_cube_onto('freight', 'world')
+    time.sleep(3)
+    //! }
     # this table has the cube.
+    //! if (_isPickAndPlace) {
     rospy.loginfo("Raising torso...")
     torso_action.move_to([0.4, ])
 
@@ -306,7 +355,13 @@ if __name__ == "__main__":
     # Lower torso
     rospy.loginfo("Lowering torso...")
     torso_action.move_to([0.0, ])
-    
+    //! } // endif _isPickAndPlace
+    //! } // endif hasCube
+    //! if (ctable.isPlaceTarget) {
+    //! if (_isFreight) {
+    place_demo_cube_onto("$${ctable.name}")
+    time.sleep(3)
+    //!}
     //! }
     //! })
     

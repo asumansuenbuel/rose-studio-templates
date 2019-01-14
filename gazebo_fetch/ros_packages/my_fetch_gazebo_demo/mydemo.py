@@ -30,6 +30,7 @@
 
 //! var _isPickAndPlace = (robot.shortName === 'Fetch')
 //! var _isFreight = (robot["Robot Category"] === 'logistic')
+//! var _sfun = ((a,b) => a.index > b.index ? 1 : a.index < b.index ? -1 : 0)
 
 
 import copy
@@ -364,72 +365,4 @@ if __name__ == "__main__":
     //!}
     //! }
     //! })
-    
-    
-    //! if (false) {
-    # Move the base to be in front of the table
-    # Demonstrates the use of the navigation stack
-    rospy.loginfo("Moving to table...")
-    move_base.goto(2.250, 3.118, 0.0)
-    move_base.goto(2.750, 3.118, 0.0)
-
-    # Raise the torso using just a controller
-    //! if (_isPickAndPlace) {
-    rospy.loginfo("Raising torso...")
-    torso_action.move_to([0.4, ])
-
-    # Point the head at the cube we want to pick
-    head_action.look_at(3.7, 3.18, 0.0, "map")
-
-    # Get block to pick
-    while not rospy.is_shutdown():
-        rospy.loginfo("Picking object...")
-        grasping_client.updateScene()
-        cube, grasps = grasping_client.getGraspableCube()
-        if cube == None:
-            rospy.logwarn("Perception failed.")
-            continue
-
-        # Pick the block
-        if grasping_client.pick(cube, grasps):
-            break
-        rospy.logwarn("Grasping failed.")
-
-    # Tuck the arm
-    grasping_client.tuck()
-
-    # Lower torso
-    rospy.loginfo("Lowering torso...")
-    torso_action.move_to([0.0, ])
-    
-    //! } 
-
-    # Move to second table
-    rospy.loginfo("Moving to second table...")
-    move_base.goto(-3.53, 3.75, 1.57)
-    move_base.goto(-3.53, 4.15, 1.57)
- 
-
-    //! if (_isPickAndPlace) {
-    # Raise the torso using just a controller
-    rospy.loginfo("Raising torso...")
-    torso_action.move_to([0.4, ])
-
-    # Place the block
-    while not rospy.is_shutdown():
-        rospy.loginfo("Placing object...")
-        pose = PoseStamped()
-        pose.pose = cube.primitive_poses[0]
-        pose.pose.position.z += 0.05
-        pose.header.frame_id = cube.header.frame_id
-        if grasping_client.place(cube, pose):
-            break
-        rospy.logwarn("Placing failed.")
-
-    # Tuck the arm, lower the torso
-    grasping_client.tuck()
-    torso_action.move_to([0.0, ])
-    //! }
-    
-    //! } 
 

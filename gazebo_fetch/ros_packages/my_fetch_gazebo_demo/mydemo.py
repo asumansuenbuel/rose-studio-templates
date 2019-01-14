@@ -272,12 +272,42 @@ if __name__ == "__main__":
     
     //! world.cafeTables.forEach(ctable => {
     //!   let [p0, p1] = ctable.pose
-    //!   let [x0, y0] = [p0 - 1.8, p1 + 0.118]
-    //!   let [x1, y1] = [p0 - 1.3, p1 + 0.118]
+    //!   let [x0, y0] = [p0 - 1.8, p1]
+    //!   let [x1, y1] = [p0 - 1.3, p1]
     //!   let theta = 0.0
     rospy.loginfo("Moving to table $${ctable.name}...")
     move_base.goto($${x0}, $${y0}, $${theta})
     move_base.goto($${x1}, $${y1}, $${theta})
+    //! if (ctable.hasCube && _isPickAndPlace) {
+    # this table has the cube.
+    rospy.loginfo("Raising torso...")
+    torso_action.move_to([0.4, ])
+
+    # Point the head at the cube we want to pick
+    head_action.look_at($${p0 - 0.25}, $${p1 + 0.15}, 0.0, "map")
+
+    # Get block to pick
+    while not rospy.is_shutdown():
+        rospy.loginfo("Picking object...")
+        grasping_client.updateScene()
+        cube, grasps = grasping_client.getGraspableCube()
+        if cube == None:
+            rospy.logwarn("Perception failed.")
+            continue
+
+        # Pick the block
+        if grasping_client.pick(cube, grasps):
+            break
+        rospy.logwarn("Grasping failed.")
+
+    # Tuck the arm
+    grasping_client.tuck()
+
+    # Lower torso
+    rospy.loginfo("Lowering torso...")
+    torso_action.move_to([0.0, ])
+    
+    //! }
     //! })
     
     

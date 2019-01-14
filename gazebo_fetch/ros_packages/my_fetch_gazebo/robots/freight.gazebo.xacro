@@ -38,6 +38,7 @@
     <implicitSpringDamper>1</implicitSpringDamper>
   </gazebo>
 
+  //! if (showFreightVisibleArea) {
   <!-- SICK TIM561 (25m Range) -->
   <gazebo reference="laser_link">
     <sensor type="ray" name="base_laser">
@@ -71,6 +72,7 @@
       </plugin>
     </sensor>
   </gazebo>
+  //! }
 
   <!-- Color the estop -->
   <gazebo reference="estop_link">

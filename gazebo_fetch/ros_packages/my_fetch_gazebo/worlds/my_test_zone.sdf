@@ -9,7 +9,7 @@
     </include>
     //! if (world.includeWalls) {
     <include>
-      <uri>model://my_walls</uri>
+      <uri>model://$${world.wallsModelName}</uri>
     </include>
     //! }
     //! world.cafeTables.forEach(ctable => {

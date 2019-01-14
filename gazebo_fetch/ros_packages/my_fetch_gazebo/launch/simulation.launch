@@ -15,6 +15,6 @@
   </include>
 
   <!-- Oh, you wanted a robot? -->
-  <include file="$(find fetch_gazebo)/launch/include/$(arg robot).launch.xml" />
+  <include file="$(find my_fetch_gazebo)/launch/include/$(arg robot).launch.xml" />
 
 </launch>

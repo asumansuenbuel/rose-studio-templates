@@ -16,6 +16,8 @@
   <run_depend>fetch_moveit_config</run_depend>
   <run_depend>fetch_navigation</run_depend>
   <run_depend>moveit_python</run_depend>
+  //! if (robot.shortName === 'Fetch') {
   <run_depend>simple_grasping</run_depend>
   <run_depend>teleop_twist_keyboard</run_depend>
+  //! }
 </package>

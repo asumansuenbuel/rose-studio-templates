@@ -28,23 +28,33 @@
 
 # Author: Michael Ferguson
 
+//! var _isPickAndPlace = (robot.shortName === 'Fetch')
+
+
 import copy
 import actionlib
 import rospy
 
 from math import sin, cos
+//! if (_isPickAndPlace) {
 from moveit_python import (MoveGroupInterface,
                            PlanningSceneInterface,
                            PickPlaceInterface)
+//! } else {
+from moveit_python import (MoveGroupInterface,
+                           PlanningSceneInterface)
+//! }
 from moveit_python.geometry import rotate_pose_msg_by_euler_angles
 
-##from control_msgs.msg import FollowJointTrajectoryAction, FollowJointTrajectoryGoal
-##from control_msgs.msg import PointHeadAction, PointHeadGoal
-##from grasping_msgs.msg import FindGraspableObjectsAction, FindGraspableObjectsGoal
+//! if (_isPickAndPlace) {
+from control_msgs.msg import FollowJointTrajectoryAction, FollowJointTrajectoryGoal
+from control_msgs.msg import PointHeadAction, PointHeadGoal
+from grasping_msgs.msg import FindGraspableObjectsAction, FindGraspableObjectsGoal
+from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
+//! }
 from geometry_msgs.msg import PoseStamped
 from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
 from moveit_msgs.msg import PlaceLocation, MoveItErrorCodes
-##from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
 
 # Move base using navigation stack
 class MoveBaseClient(object):
@@ -67,6 +77,7 @@ class MoveBaseClient(object):
         self.client.send_goal(move_goal)
         self.client.wait_for_result()
 
+//! if (_isPickAndPlace) {
 # Send a trajectory to controller
 class FollowTrajectoryClient(object):
 
@@ -240,10 +251,11 @@ class GraspingClient(object):
             result = self.move_group.moveToJointPosition(joints, pose, 0.02)
             if result.error_code.val == MoveItErrorCodes.SUCCESS:
                 return
+//! }
 
 if __name__ == "__main__":
     # Create a node
-    rospy.init_node("demo")
+    rospy.init_node("mydemo")
 
     # Make sure sim time is working
     while not rospy.Time.now():
@@ -252,14 +264,24 @@ if __name__ == "__main__":
     # Setup clients
     move_base = MoveBaseClient()
     
-    ##torso_action = FollowTrajectoryClient("torso_controller", ["torso_lift_joint"])
-    ##head_action = PointHeadClient()
-    ##grasping_client = GraspingClient()
-
-    rospy.loginfo("Going to startpoint...")
-    move_base.goto(0, 0, 0.0)
-    move_base.goto(0, 0, 0.0)
-
+    //! if (_isPickAndPlace) {
+    torso_action = FollowTrajectoryClient("torso_controller", ["torso_lift_joint"])
+    head_action = PointHeadClient()
+    grasping_client = GraspingClient()
+    //! }
+    
+    //! world.cafeTables.forEach(ctable => {
+    //!   let [p0, p1] = ctable.pose
+    //!   let [x0, y0] = [p0 - 1.8, p1 + 0.118]
+    //!   let [x1, y1] = [p0 - 1.3, p1 + 0.118]
+    //!   let theta = 0.0
+    rospy.loginfo("Moving to table $${ctable.name}...")
+    move_base.goto($${x0}, $${y0}, $${theta})
+    move_base.goto($${x1}, $${y1}, $${theta})
+    //! })
+    
+    
+    //! if (false) {
     # Move the base to be in front of the table
     # Demonstrates the use of the navigation stack
     rospy.loginfo("Moving to table...")
@@ -267,56 +289,62 @@ if __name__ == "__main__":
     move_base.goto(2.750, 3.118, 0.0)
 
     # Raise the torso using just a controller
-    ##rospy.loginfo("Raising torso...")
-    ##torso_action.move_to([0.4, ])
+    //! if (_isPickAndPlace) {
+    rospy.loginfo("Raising torso...")
+    torso_action.move_to([0.4, ])
 
     # Point the head at the cube we want to pick
-    ##head_action.look_at(3.7, 3.18, 0.0, "map")
+    head_action.look_at(3.7, 3.18, 0.0, "map")
 
     # Get block to pick
-    if False:
-        while not rospy.is_shutdown():
-            rospy.loginfo("Picking object...")
-            grasping_client.updateScene()
-            cube, grasps = grasping_client.getGraspableCube()
-            if cube == None:
-                rospy.logwarn("Perception failed.")
-                continue
+    while not rospy.is_shutdown():
+        rospy.loginfo("Picking object...")
+        grasping_client.updateScene()
+        cube, grasps = grasping_client.getGraspableCube()
+        if cube == None:
+            rospy.logwarn("Perception failed.")
+            continue
 
-            # Pick the block
-            if grasping_client.pick(cube, grasps):
-                break
-            rospy.logwarn("Grasping failed.")
+        # Pick the block
+        if grasping_client.pick(cube, grasps):
+            break
+        rospy.logwarn("Grasping failed.")
 
-        # Tuck the arm
-        grasping_client.tuck()
+    # Tuck the arm
+    grasping_client.tuck()
 
-        # Lower torso
-        rospy.loginfo("Lowering torso...")
-        torso_action.move_to([0.0, ])
+    # Lower torso
+    rospy.loginfo("Lowering torso...")
+    torso_action.move_to([0.0, ])
+    
+    //! } 
 
     # Move to second table
     rospy.loginfo("Moving to second table...")
     move_base.goto(-3.53, 3.75, 1.57)
     move_base.goto(-3.53, 4.15, 1.57)
+ 
 
+    //! if (_isPickAndPlace) {
     # Raise the torso using just a controller
-    ##rospy.loginfo("Raising torso...")
-    ##torso_action.move_to([0.4, ])
+    rospy.loginfo("Raising torso...")
+    torso_action.move_to([0.4, ])
 
     # Place the block
-    if False:
-        while not rospy.is_shutdown():
-            rospy.loginfo("Placing object...")
-            pose = PoseStamped()
-            pose.pose = cube.primitive_poses[0]
-            pose.pose.position.z += 0.05
-            pose.header.frame_id = cube.header.frame_id
-            if grasping_client.place(cube, pose):
-                break
-            rospy.logwarn("Placing failed.")
+    while not rospy.is_shutdown():
+        rospy.loginfo("Placing object...")
+        pose = PoseStamped()
+        pose.pose = cube.primitive_poses[0]
+        pose.pose.position.z += 0.05
+        pose.header.frame_id = cube.header.frame_id
+        if grasping_client.place(cube, pose):
+            break
+        rospy.logwarn("Placing failed.")
 
-        # Tuck the arm, lower the torso
-        grasping_client.tuck()
-        torso_action.move_to([0.0, ])
+    # Tuck the arm, lower the torso
+    grasping_client.tuck()
+    torso_action.move_to([0.0, ])
+    //! }
+    
+    //! } 
 

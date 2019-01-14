@@ -4,7 +4,7 @@
       <static>0</static>
       <link name='link'>
         <inertial>
-          <mass>0.25</mass>
+          <mass>2.25</mass>
           <inertia>
             <ixx>0.001</ixx>
             <ixy>0.000000</ixy>
@@ -17,14 +17,14 @@
         <collision name='collision'>
           <geometry>
             <box>
-              <size>0.060 0.060 0.060</size>
+              <size>$${world.demoCube.size} $${world.demoCube.size} $${world.demoCube.size}</size>
             </box>
           </geometry>
           <surface>
             <friction>
               <ode>
-                <mu>30.0</mu>
-                <mu2>30.0</mu2>
+                <mu>60.0</mu>
+                <mu2>60.0</mu2>
               </ode>
             </friction>
             <contact>
@@ -40,13 +40,13 @@
         <visual name='visual'>
           <geometry>
             <box>
-              <size>0.060 0.060 0.060</size>
+              <size>$${world.demoCube.size} $${world.demoCube.size} $${world.demoCube.size}</size>
             </box>
           </geometry>
           <material>
             <script>
               <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/Blue</name>
+              <name>Gazebo/$${world.demoCube.color}</name>
             </script>
           </material>
         </visual>
@@ -60,3 +60,4 @@
       </link>   
   </model>
 </sdf>
+

@@ -16,19 +16,14 @@
     <include>
       <uri>model://cafe_table</uri>
       <name>$${ctable.name}</name>
-      <pose>$${ctable.pose.join(' ')}</pose>
+      <pose>$${ctable.pose.join(" ")}</pose>
     </include>
-    //! })
-    <!--
-    <include>
-      <uri>model://cafe_table</uri>
-      <name>table2</name>
-      <pose>-3 5 0 0 0 1.57</pose>
-    </include>
+    //!    if (ctable.hasCube) {
     <include>
       <uri>model://demo_cube</uri>
-      <pose>3.8 3.15 0.83 0 0 0</pose>
+      <pose>$${ctable.pose[0] - 0.25} $${ctable.pose[1] + 0.15} 0.83 0 0 0</pose>
     </include>
-    -->
+    //!    }
+    //! })
   </world>
 </sdf>

@@ -175,6 +175,7 @@
       </velocity_decay>
       <pose>-3.56547 -2.72682 0 0 -0 0</pose>
     </link>
+    //! if (false) {
     <link name='Wall_8'>
       <collision name='Wall_8_Collision'>
         <geometry>
@@ -204,6 +205,7 @@
       </velocity_decay>
       <pose>-0.329024 -1.75589 0 0 -0 1.5708</pose>
     </link>
+    //! }
     <link name='Wall_9'>
       <collision name='Wall_9_Collision'>
         <geometry>

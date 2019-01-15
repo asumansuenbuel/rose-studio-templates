@@ -440,6 +440,7 @@
       </velocity_decay>
       <pose>-3.41016 -3.52246 0 0 -0 0</pose>
     </link>
+    //! if (false) {
     <link name='Wall_8'>
       <collision name='Wall_8_Collision'>
         <geometry>
@@ -469,6 +470,7 @@
       </velocity_decay>
       <pose>1.32481 -1.70338 0 0 -0 1.5708</pose>
     </link>
+    //! }
     <link name='Wall_9'>
       <pose>-2.01909 0.115705 0 0 -0 3.14159</pose>
       <visual name='Wall_9_Visual_0'>

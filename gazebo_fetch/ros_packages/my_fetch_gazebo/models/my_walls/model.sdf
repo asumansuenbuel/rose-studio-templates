@@ -175,7 +175,7 @@
       </velocity_decay>
       <pose>-3.56547 -2.72682 0 0 -0 0</pose>
     </link>
-    //! if (false) {
+    //! if (true) {
     <link name='Wall_8'>
       <collision name='Wall_8_Collision'>
         <geometry>

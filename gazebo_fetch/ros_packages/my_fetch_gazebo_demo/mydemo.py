@@ -319,12 +319,12 @@ if __name__ == "__main__":
     //!   let [p0, p1] = ctable.pose
     //!   let [x0, y0] = [p0 - 1.8, p1 + 0.118]
     //!   let [x1, y1] = [p0 - 1.3, p1 + 0.118]
-    //!   let theta = 0.0
+    //!   let theta = "0.0"
     rospy.loginfo("Moving to table $${ctable.name}...")
     move_base.goto($${x0}, $${y0}, $${theta})
     rospy.loginfo("move to $${x0}, $${y0} successful.")
-    move_base.goto($${x1}, $${y1}, $${theta})
-    rospy.loginfo("move to $${x1}, $${y1} successful.")
+    #move_base.goto($${x1}, $${y1}, $${theta})
+    #rospy.loginfo("move to $${x1}, $${y1} successful.")
     //! if (ctable.hasCube) {
     //! if (_isFreight) {
     place_demo_cube_onto('freight', 'world')

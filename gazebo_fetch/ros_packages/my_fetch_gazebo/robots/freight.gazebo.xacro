@@ -8,7 +8,7 @@
     <mu1>0.1</mu1>
     <mu2>0.1</mu2>
     <fdir1>1 0 0</fdir1>
-    <maxVel>10.0</maxVel>
+    <maxVel>$${robot.maxVelocity ? robot.maxVelocity : 5.0}</maxVel>
     <minDepth>0.0005</minDepth>
   </gazebo>
   <gazebo reference="r_wheel_link">

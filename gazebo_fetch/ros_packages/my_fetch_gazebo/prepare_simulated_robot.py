@@ -28,6 +28,10 @@
 
 # Author: Michael Ferguson
 
+//! var _isPickAndPlace = (robot.shortName === 'Fetch')
+//! var _isFreight = (robot["Robot Category"] === 'logistic')
+
+
 import sys
 
 import rospy
@@ -47,7 +51,11 @@ head_joint_names = ["head_pan_joint", "head_tilt_joint"]
 head_joint_positions = [0.0, 0.0]
 
 if __name__ == "__main__":
+    //! if (_isFreight) {
+    rospy.init_node("************** prepare_simulated_robot for freight robot **************")
+    //! } else {
     rospy.init_node("************** prepare_simulated_robot **************")
+    //!}
 
     # Check robot serial number, we never want to run this on a real robot!
     if rospy.get_param("robot/serial") != "ABCDEFGHIJKLMNOPQRSTUVWX":

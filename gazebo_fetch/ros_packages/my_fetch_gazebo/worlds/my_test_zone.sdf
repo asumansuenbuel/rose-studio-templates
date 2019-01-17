@@ -16,7 +16,7 @@
     <include>
       <uri>model://dumpster</uri>
       <name>dumpster</name>
-      <pose>4 1 0 0 0 2.7</pose>
+      <pose>4 1 0 0 0 -2.7</pose>
     </include>
     //! }
     //! world.cafeTables.forEach(ctable => {

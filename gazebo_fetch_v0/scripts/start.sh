@@ -21,13 +21,10 @@ sleep 2
 //! }
 
 exec roslaunch my_fetch_gazebo playground.launch \
-//! switch(robot.shortName) {
-//! case 'FetchFreight':
-   robot:=freight
-//!   break
-//! case 'Fetch':
+//! if (robot.shortName === 'FetchFreight') {
    robot:=fetch
-//!   break
+//! } else {
+   robot:=freight
 //! }
 
 

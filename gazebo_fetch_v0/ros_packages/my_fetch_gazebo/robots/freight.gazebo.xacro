@@ -42,7 +42,7 @@
   <gazebo reference="laser_link">
     <sensor type="ray" name="base_laser">
       <pose>0 0 0 0 0 0</pose>
-      <visualize>$${showFreightVisibleArea}</visualize>
+      <visualize>false</visualize>
       <update_rate>15</update_rate>
       <ray>
         <scan>

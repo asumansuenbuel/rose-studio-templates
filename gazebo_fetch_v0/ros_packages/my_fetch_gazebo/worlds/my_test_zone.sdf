@@ -7,30 +7,23 @@
     <include>
       <uri>model://sun</uri>
     </include>
-    //! if (world.includeWalls) {
     <include>
-      <uri>model://$${world.wallsModelName}</uri>
+      <uri>model://my_walls</uri>
     </include>
-    //! }
-    //! if (world.includeDumpster) {
-    <include>
-      <uri>model://dumpster</uri>
-      <name>dumpster</name>
-      <pose>4 1 0 0 0 2.7</pose>
-    </include>
-    //! }
-    //! world.cafeTables.forEach(ctable => {
     <include>
       <uri>model://cafe_table</uri>
-      <name>$${ctable.name}</name>
-      <pose>$${ctable.pose.join(" ")}</pose>
+      <name>table1</name>
+      <pose>4.05 3 0 0 0 1.57</pose>
     </include>
-    //!    if (ctable.hasCube) {
     <include>
       <uri>model://demo_cube</uri>
-      <pose>$${ctable.pose[0] - 0.25} $${ctable.pose[1] + 0.15} 0.83 0 0 0</pose>
+      <pose>3.8 3.15 0.83 0 0 0</pose>
     </include>
-    //!    }
-    //! })
+    <include>
+      <uri>model://cafe_table</uri>
+      <name>table2</name>
+      <pose>-3 5 0 0 0 1.57</pose>
+    </include>
   </world>
 </sdf>
+

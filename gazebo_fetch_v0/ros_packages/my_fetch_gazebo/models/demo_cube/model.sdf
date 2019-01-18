@@ -17,7 +17,7 @@
         <collision name='collision'>
           <geometry>
             <box>
-              <size>$${world.demoCube.size} $${world.demoCube.size} $${world.demoCube.size}</size>
+              <size>0.14 0.14 0.14</size>
             </box>
           </geometry>
           <surface>
@@ -40,13 +40,13 @@
         <visual name='visual'>
           <geometry>
             <box>
-              <size>$${world.demoCube.size} $${world.demoCube.size} $${world.demoCube.size}</size>
+              <size>0.14 0.14 0.14</size>
             </box>
           </geometry>
           <material>
             <script>
               <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/$${world.demoCube.color}</name>
+              <name>Gazebo/Red</name>
             </script>
           </material>
         </visual>
@@ -60,4 +60,5 @@
       </link>   
   </model>
 </sdf>
+
 

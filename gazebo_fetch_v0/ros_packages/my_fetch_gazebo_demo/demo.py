@@ -28,40 +28,23 @@
 
 # Author: Michael Ferguson
 
-//! var _isPickAndPlace = (robot.shortName === 'Fetch')
-//! var _isFreight = (robot["Robot Category"] === 'logistic')
-//! var _sfun = ((a,b) => a.index > b.index ? 1 : a.index < b.index ? -1 : 0)
-
-
 import copy
 import actionlib
 import rospy
-import time
 
 from math import sin, cos
-//! if (_isPickAndPlace) {
 from moveit_python import (MoveGroupInterface,
                            PlanningSceneInterface,
                            PickPlaceInterface)
-//! } else {
-from moveit_python import (MoveGroupInterface,
-                           PlanningSceneInterface)
-//! }
 from moveit_python.geometry import rotate_pose_msg_by_euler_angles
 
-//! if (_isPickAndPlace) {
 from control_msgs.msg import FollowJointTrajectoryAction, FollowJointTrajectoryGoal
 from control_msgs.msg import PointHeadAction, PointHeadGoal
 from grasping_msgs.msg import FindGraspableObjectsAction, FindGraspableObjectsGoal
-from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
-//! }
 from geometry_msgs.msg import PoseStamped
 from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
 from moveit_msgs.msg import PlaceLocation, MoveItErrorCodes
-
-from gazebo_msgs.srv import GetModelState, SetModelState
-from gazebo_msgs.msg import ModelState
-
+from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
 
 # Move base using navigation stack
 class MoveBaseClient(object):
@@ -84,7 +67,6 @@ class MoveBaseClient(object):
         self.client.send_goal(move_goal)
         self.client.wait_for_result()
 
-//! if (_isPickAndPlace) {
 # Send a trajectory to controller
 class FollowTrajectoryClient(object):
 
@@ -258,49 +240,10 @@ class GraspingClient(object):
             result = self.move_group.moveToJointPosition(joints, pose, 0.02)
             if result.error_code.val == MoveItErrorCodes.SUCCESS:
                 return
-//! }
-
-//! if (_isFreight) {
-def place_demo_cube_onto(object_name, link_name = 'link', z = 0.9):
-    try:
-        getCoords = rospy.ServiceProxy('/gazebo/get_model_state', GetModelState)
-        objectCoords = getCoords(object_name, link_name)
-        place_demo_cube_onto_xy(objectCoords.pose.position.x, objectCoords.pose.position.y, z)
-    except rospy.ServiceException as e:
-        rospy.loginfo("placing demo cube on object failed:  {0}".format(e))
-        
-def place_demo_cube_onto_xy(x, y, z = 0.9):
-    try:
-        demoCubeName = 'demo_cube'
-        demoCubeRef = 'link'
-        print("placing demo_cube on (%f,%f)..." % (x, y))
-        # first get coordinates of demo_cube:
-        getCoords = rospy.ServiceProxy('/gazebo/get_model_state', GetModelState)
-        setProps = rospy.ServiceProxy('/gazebo/set_model_state', SetModelState)
-        demoCubeCoords = getCoords(demoCubeName, demoCubeRef)
-        # next, get the object's coordinates:
-        #objectCoords = getCoords(object_name, link_name)
-        # determine the difference between the object and the cube:
-        x_diff = x - demoCubeCoords.pose.position.x
-        y_diff = y - demoCubeCoords.pose.position.y
-        # finally, set the new coordinates of the cube:
-        msg = ModelState()
-        msg.model_name = demoCubeName
-        msg.reference_frame = demoCubeRef
-        msg.pose = demoCubeCoords.pose
-        msg.twist = demoCubeCoords.twist
-        msg.pose.position.x = x_diff
-        msg.pose.position.y = y_diff
-        msg.pose.position.z = z
-        setProps(msg)
-    except rospy.ServiceException as e:
-        rospy.loginfo("placing demo cube on object failed:  {0}".format(e))
-
-//! }
 
 if __name__ == "__main__":
     # Create a node
-    rospy.init_node("mydemo")
+    rospy.init_node("demo")
 
     # Make sure sim time is working
     while not rospy.Time.now():
@@ -308,35 +251,22 @@ if __name__ == "__main__":
 
     # Setup clients
     move_base = MoveBaseClient()
-    
-    //! if (_isPickAndPlace) {
     torso_action = FollowTrajectoryClient("torso_controller", ["torso_lift_joint"])
     head_action = PointHeadClient()
     grasping_client = GraspingClient()
-    //! }
-    
-    //! world.cafeTables.forEach(ctable => {
-    //!   let [p0, p1] = ctable.pose
-    //!   let [x0, y0] = [p0 - 1.8, p1 + 0.118]
-    //!   let [x1, y1] = [p0 - 1.3, p1 + 0.118]
-    //!   let theta = "0.0"
-    rospy.loginfo("Moving to table $${ctable.name}...")
-    move_base.goto($${x0}, $${y0}, $${theta})
-    rospy.loginfo("move to $${x0}, $${y0} successful.")
-    #move_base.goto($${x1}, $${y1}, $${theta})
-    #rospy.loginfo("move to $${x1}, $${y1} successful.")
-    //! if (ctable.hasCube) {
-    //! if (_isFreight) {
-    place_demo_cube_onto('freight', 'world')
-    time.sleep(3)
-    //! }
-    # this table has the cube.
-    //! if (_isPickAndPlace) {
+
+    # Move the base to be in front of the table
+    # Demonstrates the use of the navigation stack
+    rospy.loginfo("Moving to table...")
+    move_base.goto(2.250, 3.118, 0.0)
+    move_base.goto(2.750, 3.118, 0.0)
+
+    # Raise the torso using just a controller
     rospy.loginfo("Raising torso...")
     torso_action.move_to([0.4, ])
 
     # Point the head at the cube we want to pick
-    head_action.look_at($${p0 - 0.35}, $${p1 + 0.18}, 0.0, "map")
+    head_action.look_at(3.7, 3.18, 0.0, "map")
 
     # Get block to pick
     while not rospy.is_shutdown():
@@ -358,13 +288,28 @@ if __name__ == "__main__":
     # Lower torso
     rospy.loginfo("Lowering torso...")
     torso_action.move_to([0.0, ])
-    //! } // endif _isPickAndPlace
-    //! } // endif hasCube
-    //! if (ctable.isPlaceTarget) {
-    //! if (_isFreight) {
-    place_demo_cube_onto("$${ctable.name}")
-    time.sleep(3)
-    //!}
-    //! }
-    //! })
+
+    # Move to second table
+    rospy.loginfo("Moving to second table...")
+    move_base.goto(-3.53, 3.75, 1.57)
+    move_base.goto(-3.53, 4.15, 1.57)
+
+    # Raise the torso using just a controller
+    rospy.loginfo("Raising torso...")
+    torso_action.move_to([0.4, ])
+
+    # Place the block
+    while not rospy.is_shutdown():
+        rospy.loginfo("Placing object...")
+        pose = PoseStamped()
+        pose.pose = cube.primitive_poses[0]
+        pose.pose.position.z += 0.05
+        pose.header.frame_id = cube.header.frame_id
+        if grasping_client.place(cube, pose):
+            break
+        rospy.logwarn("Placing failed.")
+
+    # Tuck the arm, lower the torso
+    grasping_client.tuck()
+    torso_action.move_to([0.0, ])
 

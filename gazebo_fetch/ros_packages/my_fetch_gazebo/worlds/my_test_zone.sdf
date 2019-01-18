@@ -12,6 +12,13 @@
       <uri>model://$${world.wallsModelName}</uri>
     </include>
     //! }
+    //! if (world.includeDumpster) {
+    <include>
+      <uri>model://dumpster</uri>
+      <name>dumpster</name>
+      <pose>4 1 0 0 0 2.7</pose>
+    </include>
+    //! }
     //! world.cafeTables.forEach(ctable => {
     <include>
       <uri>model://cafe_table</uri>

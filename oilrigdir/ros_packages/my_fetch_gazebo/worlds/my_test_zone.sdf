@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<sdf version="1.4">
+  <world name="default">
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    //! if (world.includeWalls) {
+    <include>
+      <uri>model://$${world.wallsModelName}</uri>
+    </include>
+    //! }
+    //! world.cafeTables.forEach(ctable => {
+    <include>
+      <uri>model://cafe_table</uri>
+      <name>$${ctable.name}</name>
+      <pose>$${ctable.pose.join(" ")}</pose>
+    </include>
+    //!    if (ctable.hasCube) {
+    <include>
+      <uri>model://demo_cube</uri>
+      <pose>$${ctable.pose[0] - 0.25} $${ctable.pose[1] + 0.15} 0.83 0 0 0</pose>
+    </include>
+    //!    }
+    //! })
+  </world>
+</sdf>

@@ -17,7 +17,16 @@
     <arg name="world_name" value="$(find my_fetch_gazebo)/worlds/$${world.name}.sdf"/>
   </include>
 
-  <!-- Oh, you wanted a robot? -->
+  //! if (robot && robot.shortName === "Mir") {
+  <!-- spawn Mir robot and bring up controllers etc. -->
+  <include file="$(find mir_gazebo)/launch/mir_gazebo_common.launch">
+    <arg name="robot_x"   value="$(arg robot_x)" />
+    <arg name="robot_y"   value="$(arg robot_y)" />
+    <arg name="robot_yaw" value="$(arg robot_yaw)" />
+  </include>
+  //! } else {
+  <!-- spawn fetch robot -->
   <include file="$(find my_fetch_gazebo)/launch/include/$(arg robot).launch.xml" />
+  //! }
 
 </launch>

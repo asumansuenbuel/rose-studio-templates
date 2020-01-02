@@ -24,7 +24,7 @@
     "generic-pool": "~2.0.4",
     "hdb": "^0.12.2",
     "http": "0.0.0",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.13",
     "request": "^2.85.0",
     "request-promise": "^4.2.2",
     "routes": "^2.1.0",

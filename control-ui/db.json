@@ -1,0 +1,6 @@
+//! let robotId = 0;
+{
+  "robot": [
+      { "id": "$${robotId++}", "name": "$${robot.NAME}", "image": "$${robot.ICON_URL}" }
+  ]
+}

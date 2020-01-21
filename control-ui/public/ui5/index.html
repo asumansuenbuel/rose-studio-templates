@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="cache-control" content="no-cache" />
+    <title>Control UI</title>
+    <script
+      id="sap-ui-bootstrap"
+      xsrc="https://openui5.hana.ondemand.com/resources/sap-ui-core.js"
+      src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
+      zsrc="https://sapui5.hana.ondemand.com/resources/sap-ui-cachebuster/sap-ui-core.js"
+      data-sap-ui-theme="sap_bluecrystal"
+      data-sap-ui-libs="sap.m,sap.ui.codeeditor"
+      data-sap-ui-bindingSyntax="complex"
+      data-sap-ui-oninit="module:sap/ui/core/ComponentSupport"
+      data-sap-ui-resourceroots='{"controlui": "./controlui"}'
+      xdata-sap-ui-appCachebuster="./"
+      displayBlock="true">
+    </script>
+    <style>
+      .action-button > span > span {
+	  font-size: 18pt;
+      }
+      .action-button {
+	  width: -webkit-fill-available;
+      }
+      .header > span {
+	  margin-top: 10px;
+	  font-size: 20pt;
+      }
+      .action-buttons-container {
+	  padding: 1em;
+      }
+      .big-label {
+	  width: 100%;
+      }
+      .big-label > span {
+	  font-size: 20pt;
+	  text-align: center;
+      }
+      .robot-image {
+	  max-height: 300px;
+	  max-width: 460px;
+      }
+    </style>
+    <!--
+    <script src="/js/jsonModel.js"></script>
+    <script src="/js/moment.min.js"></script>
+    -->
+    <script>
+      sap.ui.getCore().attachInit(function () {
+	  new sap.ui.core.ComponentContainer({
+	      height : "100%",
+	      name : "controlui"
+	  }).placeAt("content");
+      });
+    </script>
+    <!--
+    <script src="/js/utils.js"></script>
+    <script src="/js/constants.js"></script>
+    <script src="/js/dnd_helper.js"></script>
+    <script src="/js/codeEditorFileTypes.js"></script>
+    <script src="/js/FileSaver.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.11/lodash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    -->
+  </head>
+  <body class="sapUiBody" id="content">
+  </body>
+</html>

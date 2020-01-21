@@ -1,0 +1,115 @@
+{
+    "_version": "1.9.0",
+    "_sap.app": {
+	"_version": "1.1.0",
+	"id": "controlui",
+	"type": "application",
+	"applicationVersion": {
+	    "version": "1.0.0"
+	}
+    },
+    "sap.ui": {
+	"_version": "1.1.0",
+	"technology": "UI5",
+	"deviceTypes": {
+	    "desktop": true,
+	    "tablet": true,
+	    "phone": true
+	},
+	"supportedThemes": [
+	    "sap_goldreflection"
+	]
+    },
+    "sap.ui5": {
+	"_version": "1.1.0",
+	"rootView": {
+	    "viewName": "controlui.App",
+	    "type": "XML"
+	},
+	"dependencies": {
+	    "minUI5Version": "1.30",
+	    "libs": {
+		"sap.m": {}
+	    }
+	}
+    },
+    "routing":{  
+        "config":{  
+	    "routerClass":"sap.m.routing.Router",
+	    "viewType":"XML",
+	    "viewPath":"controlui",
+	    "controlId":"app",
+	    "transition":"slide",
+	    "controlAggregation":"pages"
+        },
+        "routes": [{  
+	    "pattern": "",
+	    "name": "main",
+	    "target": "main"
+	}, {
+	    "pattern": "backendSystems",
+	    "name": "backendSystems",
+	    "target": "backendSystems"
+	}, {
+	    "pattern": "robots",
+	    "name": "robots",
+	    "target": "robots"
+	}, {
+	    "pattern": "connections",
+	    "name": "connections",
+	    "target": "connections"
+	}, {
+	    "pattern": "settings",
+	    "name": "settings",
+	    "target": "settings"
+	}, {
+	    "pattern": "databaseobject/{table}/{uuid}:?query:",
+	    "name": "databaseobject",
+	    "target": "databaseobject"
+	}, {
+	    "pattern": "connectionobject/{table}/{uuid}:?query:",
+	    "name": "connectionobject",
+	    "target": "connectionobject"
+	}, {
+	    "pattern": "login",
+	    "name": "login",
+	    "target": "login"
+	}],
+        "targets": {  
+	    "main": {  
+		"viewName": "App",
+		"viewLevel": 0
+	    },
+	    "backendSystems": {
+		"viewName": "BackendSystems",
+		"viewLevel": 1
+	    },
+	    "robots": {
+		"viewName": "Robots",
+		"viewLevel": 1
+	    },
+	    "connections": {
+		"viewName": "Connections",
+		"viewLevel": 1
+	    },
+	    "settings": {
+		"viewName": "Settings",
+		"viewLevel": 1
+	    },
+	    "databaseobject": {
+		"viewName": "DatabaseObject",
+		"viewType": "JS",
+		"viewLevel": 2
+	    },
+	    "connectionobject": {
+		"viewName": "ConnectionObject",
+		"viewType": "JS",
+		"viewLevel": 2
+	    },
+	    "login": {
+		"viewName": "Login",
+		"viewLevel": 0
+	    }
+        }
+    }
+}

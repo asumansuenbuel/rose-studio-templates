@@ -1,0 +1,66 @@
+//! const noCategory = 'Misc. Actions';
+//! let actions = robot.robotActions;
+//! let categories = {};
+//! if (robot.hasCamera) {
+//!    let category = "Camera", name = "Take a picture", parameters = [];
+//!    categories[category] = [{ category, name, parameters }];
+//! }
+//! if (actions) {
+//!    actions.forEach(action => {
+//!       let category = action.category || noCategory;
+//!       if (!(category in categories)) {
+//!          categories[category] = []
+//!       }
+//!       categories[category].push(action);
+//!    });
+//! }
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    data-sap-ui-bindingSyntax="complex"
+    controllerName="controlui.App">
+  <App id="app">
+    <Page title="Start View">
+      <customHeader>
+	<OverflowToolbar>
+	  <Image src="/images/prod/SAP-Logo.png" height="35px" class="sapUiMediumMarginLeft"/>
+	  <ToolbarSpacer/>
+	  <Label text="Control UI for $${robot.NAME}"/>
+	  <ToolbarSpacer/>
+	</OverflowToolbar>
+      </customHeader>
+      <content>
+	<HBox>
+	  <VBox>
+	    <Image src="{robot>/image}" class="robot-image" height="300px"/>
+	    <Label class="big-label" text="$${robot.NAME}" textAlign="Center"/>
+	  </VBox>
+	  <VBox>
+	    <HBox>
+	      <VBox class="action-buttons-container sapUiSmallMargin">
+		//! let _cnt = 0;
+		//! Object.keys(categories).forEach(category => {
+		<Label class="header" text="$${category}"/>
+		//!   let actions = categories[category];
+		//!   actions.forEach(action => {
+		//!     let actionId = action.name.toLowerCase().split(/\s+/).join('_');
+		<Button class="action-button" text="$${action.name}" press="on_$${actionId}"/>
+		//!   });
+		//!   if (++_cnt == 2) {
+		//!      _cnt = 0;
+	      </VBox>
+	      <VBox class="action-buttons-container sapUiSmallMargin">
+		//!   }
+		//! });
+	      </VBox>
+	    </HBox>
+	    <Image src="" id="picture-taken" class="robot-image"/>
+	  </VBox>
+	</HBox>
+      </content>
+    </Page>
+  </App>
+</mvc:View>
+

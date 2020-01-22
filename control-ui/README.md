@@ -8,4 +8,4 @@ This example uses a node package called "json-server". Please install it as foll
 sudo npm install json-server -g
 ```
 
-Url: [http://localhost:3000](http://localhost:3000)
+Url: [http://localhost:$${server.port}/ui5/index.html](http://localhost:$${server.port}/ui5/index.html)

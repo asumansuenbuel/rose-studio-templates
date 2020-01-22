@@ -1,3 +1,6 @@
 #!/bin/sh
 
-echo "Installing ..."
+echo "  initializing control ui using SAPUI5 for \"$${robot.NAME}\"..."
+mv public/ui5 .
+rm -rf public
+mv ui5 public
